@@ -11,7 +11,7 @@ function App() {
 
 //Funcion para guardar los datos del formulario desde el frontend al backend
 const addFriend = () => {
-  Axios.post("http://192.168.10.7:65535/addFriend", {
+  Axios.post("http://mern-beginne.herokuapp.com/addFriend", {
     name : name,
     age : age,
     description : description
@@ -30,7 +30,7 @@ const updateFriend = (id) => {
   const newAge = prompt("Ingresa nueva edad: ");
   const newDescription = prompt("Ingresa nueva descripción: ");
 
-  Axios.put("http://192.168.10.7:65535/update", { newAge: newAge, newDescription : newDescription, id : id}).then(() => {
+  Axios.put("http://mern-beginne.herokuapp.com/update", { newAge: newAge, newDescription : newDescription, id : id}).then(() => {
     alert('Datos Actualizados! Success! =D');
     setListOfFriend(ListOfFriends.map((val) =>{
       return val._id ===id
@@ -44,7 +44,7 @@ const updateFriend = (id) => {
 
 //Funcion para borrar datos desde el frontend al backend
 const deleteFriend = (id) =>{
-  Axios.delete(`http://localhost:49000/delete/${id}`).then(()=>{
+  Axios.delete(`http://mern-beginne.herokuapp.com/delete/${id}`).then(()=>{
       alert('Datos eliminados');
       setListOfFriend(ListOfFriends.filter((val)=>{
           return val._id !== id;
@@ -57,7 +57,7 @@ const deleteFriend = (id) =>{
   //Funcion para cargar los datos desde el backend al frontend
   //useEffect es una funcion que se ejecuta al cargar la App
   useEffect(() => {
-    Axios.get("http://192.168.10.7:65535/read")
+    Axios.get("http://mern-beginne.herokuapp.com/read")
     .then((response) => {
       setListOfFriend(response.data);
     }).catch(() => {
